@@ -1,4 +1,54 @@
 <!--The content below is only a placeholder and can be replaced.-->
+<div class="fondo">
+<div class="row"  >
+  <div class="col-sm-2"></div>
+  <div class="col-sm-8">
+    <p class="titulo">¿Quién está viendo ahora?</p>
+  </div>
+  <div class="col-sm-2"></div>
+</div>
+
+<div class="row">
+  <!--Componente-->
+  <div class="col-sm-1"></div>
+  <div class="col-sm-2" *ngFor="let usuario of arregloUsuarios">
+    <app-seleccion [texto]="usuario.texto" [imagen]="usuario.imagen">
+
+    </app-seleccion>
+  </div>
+  <div class="col-sm-1"></div>
+</div>
+
+<div class="row">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4">
+    <p class="perfiles">ADMINISTRAR PERFILES</p>
+  </div>
+  <div class="col-sm-4"></div>
+</div>
+</div>
+
+
+<!--
+<h1>Componente seleccion</h1>
+
+<div *ngIf="mostrarComponente">
+  PAPA:{{contadorDesdePapa}}
+  <app-seleccion [contador]="contadorDesdePapa" (cambioElContador)="actualizarContador($event)">
+
+  </app-seleccion>
+</div>
+
+<button class="btn btn-success" (click)="contadorDesdePapa=contadorDesdePapa+1">
+  Aumentar Valor de contador
+</button>
+
+<button class="btn btn-info " (click)="mostrarComponente=!mostrarComponente">
+  Sumar
+</button>
+-->
+
+<!--
 <div class="row">
   <div class="col-sm-12">
     <h1>Bindings</h1>
@@ -47,5 +97,7 @@
   </div>
   <div class="col-sm-4"></div>
 </div>
+-->
+
 
 
