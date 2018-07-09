@@ -3,7 +3,17 @@
 <h1>Header</h1>
 <div class="row">
 <div class="col-sm-6">
-  COLUMNA 1
+  <ul>
+    <li>
+      <a [routerLink]="['/home']">Home</a>
+    </li>
+    <li>
+      <a [routerLink]="['/faq']">faq</a>
+    </li>
+    <li>
+      <a [routerLink]="['/login']">login</a>
+    </li>
+  </ul>
 </div>
 <div class="col-sm-6">
   <router-outlet>
