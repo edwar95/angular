@@ -1,6 +1,8 @@
-
-<form #formularioRegistro="ngForm" (ngSubmit)="ingresarUsuario(formularioRegistro)">
-  <h4>Estados del formulario</h4>
+<form
+  #formularioRegistro="ngForm"
+  (ngSubmit)="ingresarUsuario(formularioRegistro)"
+>
+  <h4>Estados formulario</h4>
   <pre>
     valid:{{formularioRegistro.valid}}
     invalid:{{formularioRegistro.invalid}}
@@ -9,51 +11,132 @@
     touched:{{formularioRegistro.touched}}
     untouched:{{formularioRegistro.untouched}}
   </pre>
-  <h4>Errores del formulario</h4>
-  <pre>
-    Errores:{{formularioRegistro.errors|json}}
-  </pre>
-<div class="form-group">
-  <label for="exampleInputEmail1">Email address</label>
-  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" [(ngModel)]="email" name="email" required pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/" #emailInput="ngModel">
-  <div class="alert alert-warning" role="alert" *ngIf="emailInput.dirty && emailInput.errors">
-    <span *ngIf="emailInput.errors?.required"> Campo requrido</span>
-    <span *ngIf="emailInput.errors.pattern"> Debe ser un correo</span>
+
+  <h4>Errores formulario</h4>
+
+  <pre>{{formularioRegistro.errors | json}}</pre>
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+
+    <input type="email"
+           class="form-control"
+           id="exampleInputEmail1"
+           aria-describedby="emailHelp"
+           placeholder="Enter email"
+           [(ngModel)]="email"
+           name="email"
+           required
+           pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}"
+           minlength="6"
+           #emailInput="ngModel"
+    >
+
+    <div
+      class="alert alert-warning"
+      role="alert"
+      *ngIf="emailInput.dirty && emailInput.errors"
+    >
+      <p *ngIf="emailInput.errors.required">
+        Campo requerido
+      </p>
+
+      <p *ngIf="emailInput.errors.pattern">
+        Debe de ser un correo valido
+      </p>
+      <p *ngIf="emailInput.errors.minlength">
+        Debe tener minimo de 6 caracteres
+      </p>
+    </div>
+
+    <h5>Estados del campo</h5>
+    <pre>
+      valid:{{emailInput.valid}}
+      invalid:{{emailInput.invalid}}
+      pristine:{{emailInput.pristine}}
+      dirty:{{emailInput.dirty}}
+      touched:{{emailInput.touched}}
+      untouched:{{emailInput.untouched}}
+    </pre>
+
+    <h5>Errores del campo</h5>
+    <pre>
+      Errores:{{emailInput.errors | json}}
+    </pre>
+
+
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
   </div>
-  <h5>Estados del campo</h5>
-  <pre>
-  valid:{{emailInput.valid}}
-  invalid:{{emailInput.invalid}}
-  pristine:{{emailInput.pristine}}
-  dirty:{{emailInput.dirty}}
-  touched:{{emailInput.touched}}
-  untouched:{{emailInput.untouched}}
-  </pre>
-
-  <h5>Errores del campo</h5>
-  <pre>
-    Errores:{{emailInput.errors | json}}
-  </pre>
 
 
-  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  <div class="form-group">
+    <label for="exampleInputPassword1">
+      Password
+    </label>
+
+    <input type="password"
+           class="form-control"
+           id="exampleInputPassword1"
+           placeholder="Password"
+           [(ngModel)]="password"
+           name="password"
+           minlength="6"
+           required
+           #passwordInput="ngModel"
+    >
+
+    <div
+      class="alert alert-warning"
+      role="alert"
+      *ngIf="passwordInput.dirty && passwordInput.errors"
+    >
+      <p *ngIf="passwordInput.errors.required">
+        Campo requerido
+      </p>
+      <p *ngIf="passwordInput.errors.minlength">
+        Debe tener minimo de 6 caracteres
+      </p>
+    </div>
+
+  </div>
 
 
-</div>
-<div class="form-group" *ngIf="password!==undefined && password!==''">
-  <label for="exampleInputPassword1">Password</label>
-  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" [(ngModel)]="Password" name="Password" required #passworImput >
+  <div class="form-group" *ngIf="password!==undefined &&
+          password!=='' &&
+          passwordInput.errors === null">
+    <label for="exampleInputPassword2">
+      Password Confirmation
+    </label>
 
-  <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" [(ngModel)]="confirmarPassword" name="confirmarPassword" required>
-</div>
+    <input type="password"
+           class="form-control"
+           id="exampleInputPassword2"
+           placeholder="Password confirmation"
+           [(ngModel)]="passwordConfirmation"
+           name="passwordConfirmation"
+           minlength="6"
+           required
+           #passwordConfirmationInput="ngModel"
+    >
 
+    <div
+      class="alert alert-warning"
+      role="alert"
+      *ngIf="passwordConfirmationInput.dirty && passwordConfirmationInput.errors"
+    >
+      <p *ngIf="passwordConfirmationInput.errors.required">
+        Campo requerido
+      </p>
+      <p *ngIf="passwordConfirmationInput.errors.minlength">
+        Debe tener minimo de 6 caracteres
+      </p>
+    </div>
 
-<div class="form-group form-check">
-  <input type="checkbox" class="form-check-input" id="exampleCheck1">
-  <label class="form-check-label" for="exampleCheck1">Check me out</label>
-</div>
+  </div>
 
-<button
-  [disabled]="formularioRegistro.valid"
-  type="submit" class="btn btn-primary">Submit</button>
+  <button
+    [disabled]="formularioRegistro.invalid"
+    type="submit" class="btn btn-primary">Submit
+  </button>
+
 </form>

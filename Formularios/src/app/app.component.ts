@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +7,22 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
-  email='';
 
-  ingresarUsuario(formulario){
-    console.log(formulario);
+  email;
+  password;
+  passwordConfirmation;
+
+  ingresarUsuario(formulario) {
+
+    const valorActualPassword = formulario
+      .controls.password.value;
+    const valorActualPasswordConfirmation = formulario.controls.passwordConfirmation.value;
+
+    if (valorActualPassword === valorActualPasswordConfirmation) {
+      alert('BIEN!');
+    } else {
+      alert('Los passwords no son iguales');
+    }
+
   }
 }
