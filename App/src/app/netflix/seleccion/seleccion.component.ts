@@ -11,7 +11,7 @@ export class SeleccionComponent implements OnInit, OnDestroy, OnChanges {
   @Input() texto:string;
   @Output() selecciono: EventEmitter<string> = new EventEmitter<string>();
 
-
+contador=20;
   constructor() {
     console.log('constructor');
   }
